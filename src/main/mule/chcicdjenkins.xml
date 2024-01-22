@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="12a50e73-ccb8-4531-9fb2-274a50d18861" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="ch-deploymentFlow" doc:id="e630dd08-49fd-41b0-9c63-7116de1b5f9d" >
+		<http:listener doc:name="Event Source" doc:id="50907baf-19c5-4669-9ece-80f47e9c4a2e" config-ref="HTTP_Listener_config" path="cicd" />
+		<logger level="INFO" doc:name="Start" doc:id="86755720-6e45-423d-bac5-a67d1359b17e" message="START!!!" />
+		<set-payload value="This is deployment to CH using CI CD pipeline through Jenkins" doc:name="Setting Payload" doc:id="b6ad4897-eba9-4233-8312-8d6036e4bae8" />
+		<logger level="INFO" doc:name="END" doc:id="9c3375a4-2ebf-4a66-ac5b-381b9b9182e3" message="END!!!" />
+	</flow>
+</mule>
